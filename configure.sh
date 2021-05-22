@@ -17,7 +17,7 @@ cat <<-EOF > /etc/xray/config.json
       "clients": [
         {
           "id": "${UUID}",
-          "flow": "xtls-rprx-direct"
+          "level": 0
           
         }
       ]
