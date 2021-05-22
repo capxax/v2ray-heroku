@@ -1,6 +1,6 @@
 #!/bin/sh
 # Download and install V2Ray
-curl -L -H "Cache-Control: no-cache" -o /v2ray.zip https://github.com/v2ray/v2ray-core/releases/latest/download/v2ray-linux-64.zip
+curl -L -H "Cache-Control: no-cache" -o /v2ray.zip https://github.com/v2fly/v2ray-core/releases/download/v4.38.3/v2ray-linux-64.zip
 mkdir /usr/bin/v2ray /etc/v2ray
 touch /etc/v2ray/config.json
 unzip /v2ray.zip -d /usr/bin/v2ray
@@ -12,12 +12,12 @@ cat <<-EOF > /etc/v2ray/config.json
   "inbounds": [
   {
     "port": ${PORT},
-    "protocol": "vmess",
+    "protocol": "vless",
     "settings": {
       "clients": [
         {
-          "id": "${UUID}",
-          "alterId": 64
+          "id": "${UUID}"
+          
         }
       ]
     },
