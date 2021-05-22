@@ -1,13 +1,13 @@
 #!/bin/sh
 # Download and install V2Ray
-curl -L -H "Cache-Control: no-cache" -o /v2ray.zip https://github.com/v2fly/v2ray-core/releases/download/v4.38.3/v2ray-linux-64.zip
-mkdir /usr/bin/v2ray /etc/v2ray
-touch /etc/v2ray/config.json
-unzip /v2ray.zip -d /usr/bin/v2ray
+curl -L -H "Cache-Control: no-cache" -o /xray.zip https://github.com/XTLS/Xray-core/releases/download/v1.4.2/Xray-linux-64.zip
+mkdir /usr/bin/xray /etc/xray
+touch /etc/xray/config.json
+unzip /xray.zip -d /usr/bin/xray
 # Remove /v2ray.zip and other useless files
-rm -rf /v2ray.zip /usr/bin/v2ray/*.sig /usr/bin/v2ray/doc /usr/bin/v2ray/*.json /usr/bin/v2ray/*.dat /usr/bin/v2ray/sys*
+rm -rf /xray.zip /usr/bin/xray/*.sig /usr/bin/xray/doc /usr/bin/xray/*.json /usr/bin/xray/*.dat /usr/bin/xray/sys*
 # V2Ray new configuration
-cat <<-EOF > /etc/v2ray/config.json
+cat <<-EOF > /etc/xray/config.json
 {
   "inbounds": [
   {
@@ -16,7 +16,8 @@ cat <<-EOF > /etc/v2ray/config.json
     "settings": {
       "clients": [
         {
-          "id": "${UUID}"
+          "id": "${UUID}",
+          "flow": "xtls-rprx-direct"
           
         }
       ]
@@ -34,4 +35,4 @@ cat <<-EOF > /etc/v2ray/config.json
   ]
 }
 EOF
-/usr/bin/v2ray/v2ray -config=/etc/v2ray/config.json
+/usr/bin/xray/xray -config=/etc/xray/config.json
